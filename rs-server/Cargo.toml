@@ -1,0 +1,12 @@
+[package]
+name = "rs-server"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+actix-web = "4.9.0"
+anyhow = "1.0.94"
+bollard = "0.18.1"
+futures-util = "0.3.31"
+serde = { version = "1.0.216", features = ["derive"] }
+tokio = { version = "1.42.0", default-features = false }
