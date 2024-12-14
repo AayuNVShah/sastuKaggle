@@ -10,6 +10,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"sync"
 
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
@@ -25,6 +26,8 @@ import (
 
 // -------------------------------- DB Connections and Functions --------------------------------
 var mongoClient *mongo.Client
+var dockerClient *client.Client
+var userContainers sync.Map
 
 func InitDB() {
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
@@ -40,6 +43,16 @@ func InitDB() {
 		log.Fatalf("Failed to ping MongoDB: %v", err)
 	}
 	log.Println("Connected to MongoDB!")
+}
+
+func InitDocker() {
+	var err error
+	dockerClient, err = client.NewClientWithOpts(client.FromEnv)
+	if err != nil {
+		log.Fatalf("Failed to create Docker client: %v", err)
+	}
+	dockerClient.NegotiateAPIVersion(context.Background())
+	log.Println("Docker client initialized!")
 }
 
 func CloseDB() {
@@ -77,7 +90,8 @@ func NewCodeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 type ExecutePayload struct {
-	Code string `json:"code"`
+	Email string `json:"email"`
+	Code  string `json:"code"`
 }
 
 func ExecuteHandler(w http.ResponseWriter, r *http.Request) {
@@ -96,11 +110,28 @@ func ExecuteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	log.Printf("Received execution request from %s at %d.\nCode:\n%s\n", "test_user", 25000000, payload.Code)
+	log.Printf("Received execution request.")
 
-	output, err := runCodeInContainer(payload.Code)
+	if payload.Email == "" {
+		http.Error(w, "User email missing in request", http.StatusUnauthorized)
+		return
+	}
+
+	containerIDValue, ok := userContainers.Load(payload.Email)
+	if !ok {
+		http.Error(w, "No container initialized for user", http.StatusInternalServerError)
+		return
+	}
+
+	containerID := containerIDValue.(string)
+
+	if err := copyCodeToContainer(dockerClient, context.Background(), containerID, payload.Code, "main.go"); err != nil {
+		http.Error(w, "Failed to copy code to container", http.StatusInternalServerError)
+		return
+	}
+
+	output, err := runCodeInExistingContainer(containerID)
 	if err != nil {
-		log.Printf("Error running code in container: %s", err)
 		http.Error(w, "Failed to execute code", http.StatusInternalServerError)
 		return
 	}
@@ -114,60 +145,20 @@ func ExecuteHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
-func runCodeInContainer(code string) (string, error) {
+func runCodeInExistingContainer(containerID string) (string, error) {
 	ctx := context.Background()
 
-	cli, err := client.NewClientWithOpts(client.FromEnv)
-	if err != nil {
-		return "", err
-	}
-	cli.NegotiateAPIVersion(ctx)
-
-	image := "golang:1.20-alpine"
-
-	_, err = cli.ImagePull(ctx, image, types.ImagePullOptions{})
-	if err != nil {
-		return "", err
-	}
-
-	resp, err := cli.ContainerCreate(ctx,
-		&container.Config{
-			Image:      image,
-			WorkingDir: "/app",
-			Cmd:        []string{"sh", "-c", "while true; do sleep 1; done"},
-			Tty:        true,
-		},
-		&container.HostConfig{},
-		nil, nil, "",
-	)
-	if err != nil {
-		return "", err
-	}
-	containerID := resp.ID
-
-	if err := copyCodeToContainer(cli, ctx, containerID, code, "main.go"); err != nil {
-		cleanupContainer(cli, ctx, containerID)
-		return "", err
-	}
-
-	if err := cli.ContainerStart(ctx, containerID, container.StartOptions{}); err != nil {
-		cleanupContainer(cli, ctx, containerID)
-		return "", err
-	}
-
-	execResp, err := cli.ContainerExecCreate(ctx, containerID, types.ExecConfig{
+	execResp, err := dockerClient.ContainerExecCreate(ctx, containerID, types.ExecConfig{
 		Cmd:          []string{"go", "run", "main.go"},
 		AttachStdout: true,
 		AttachStderr: true,
 	})
 	if err != nil {
-		cleanupContainer(cli, ctx, containerID)
 		return "", err
 	}
 
-	attachResp, err := cli.ContainerExecAttach(ctx, execResp.ID, types.ExecStartCheck{})
+	attachResp, err := dockerClient.ContainerExecAttach(ctx, execResp.ID, types.ExecStartCheck{})
 	if err != nil {
-		cleanupContainer(cli, ctx, containerID)
 		return "", err
 	}
 	defer attachResp.Close()
@@ -175,17 +166,13 @@ func runCodeInContainer(code string) (string, error) {
 	var stdoutBuf bytes.Buffer
 	_, err = io.Copy(&stdoutBuf, attachResp.Reader)
 	if err != nil {
-		cleanupContainer(cli, ctx, containerID)
 		return "", err
 	}
 
-	inspectResp, err := cli.ContainerExecInspect(ctx, execResp.ID)
+	inspectResp, err := dockerClient.ContainerExecInspect(ctx, execResp.ID)
 	if err != nil {
-		cleanupContainer(cli, ctx, containerID)
 		return "", err
 	}
-
-	cleanupContainer(cli, ctx, containerID)
 
 	cleanedOutput := sanitizeOutput(stdoutBuf.String())
 
@@ -233,12 +220,12 @@ func copyCodeToContainer(cli *client.Client, ctx context.Context, containerID, c
 	return cli.CopyToContainer(ctx, containerID, "/app", &buf, types.CopyToContainerOptions{})
 }
 
-func cleanupContainer(cli *client.Client, ctx context.Context, containerID string) {
-	cli.ContainerStop(ctx, containerID, container.StopOptions{})
-	cli.ContainerRemove(ctx, containerID, container.RemoveOptions{
-		Force: true,
-	})
-}
+// func cleanupContainer(cli *client.Client, ctx context.Context, containerID string) {
+// 	cli.ContainerStop(ctx, containerID, container.StopOptions{})
+// 	cli.ContainerRemove(ctx, containerID, container.RemoveOptions{
+// 		Force: true,
+// 	})
+// }
 
 // -------------------------------- Authentication API Payloads & Handlers --------------------------------
 
@@ -306,8 +293,43 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "Login successful")
+	ctx := context.Background()
+	image := "golang:1.20-alpine"
+
+	_, err = dockerClient.ImagePull(ctx, image, types.ImagePullOptions{})
+	if err != nil {
+		http.Error(w, "Failed to pull Docker image", http.StatusInternalServerError)
+		return
+	}
+
+	resp, err := dockerClient.ContainerCreate(ctx,
+		&container.Config{
+			Image:      image,
+			WorkingDir: "/app",
+			Cmd:        []string{"sh", "-c", "while true; do sleep 1; done"},
+			Tty:        true,
+		},
+		&container.HostConfig{},
+		nil, nil, "",
+	)
+	if err != nil {
+		http.Error(w, "Failed to create container", http.StatusInternalServerError)
+		return
+	}
+
+	if err := dockerClient.ContainerStart(ctx, resp.ID, container.StartOptions{}); err != nil {
+		http.Error(w, "Failed to start container", http.StatusInternalServerError)
+		return
+	}
+
+	userContainers.Store(payload.Email, resp.ID)
+
+	response := map[string]string{
+		"status":  "success",
+		"message": "Login successful",
+	}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
 }
 
 func HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
