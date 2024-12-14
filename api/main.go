@@ -29,9 +29,22 @@ var mongoClient *mongo.Client
 var dockerClient *client.Client
 var userContainers sync.Map
 
+// func initLogFile() (*os.File, error) {
+// 	// Create/Open log file
+// 	logFile, err := os.OpenFile("application.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+// 	if err != nil {
+// 		return nil, fmt.Errorf("failed to open log file: %v", err)
+// 	}
+
+// 	// Set log output to the log file
+// 	log.SetOutput(logFile)
+// 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
+// 	return logFile, nil
+// }
+
 func InitDB() {
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
-	opts := options.Client().ApplyURI("mongodb+srv://vraj:jRXl9CWhcmqja6Lm@sastukaggle.2kw7w.mongodb.net/?retryWrites=true&w=majority&appName=sastuKaggle").SetServerAPIOptions(serverAPI)
+	opts := options.Client().ApplyURI("mongodb+srv://khwahish:khwahish29@sastukaggle.2kw7w.mongodb.net/?retryWrites=true&w=majority&appName=sastuKaggle").SetServerAPIOptions(serverAPI)
 
 	var err error
 	mongoClient, err = mongo.Connect(context.TODO(), opts)
@@ -220,13 +233,6 @@ func copyCodeToContainer(cli *client.Client, ctx context.Context, containerID, c
 	return cli.CopyToContainer(ctx, containerID, "/app", &buf, types.CopyToContainerOptions{})
 }
 
-// func cleanupContainer(cli *client.Client, ctx context.Context, containerID string) {
-// 	cli.ContainerStop(ctx, containerID, container.StopOptions{})
-// 	cli.ContainerRemove(ctx, containerID, container.RemoveOptions{
-// 		Force: true,
-// 	})
-// }
-
 // -------------------------------- Authentication API Payloads & Handlers --------------------------------
 
 func hashPassword(password string) string {
@@ -332,12 +338,79 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
+func LogoutHandler(w http.ResponseWriter, r *http.Request) {
+	var payload UserPayload
+
+	if err := json.NewDecoder(r.Body).Decode(&payload); err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		return
+	}
+
+	database := mongoClient.Database("gokaggle")
+	usersCollection := database.Collection("users")
+
+	var user UserPayload
+	err := usersCollection.FindOne(context.TODO(), bson.M{"email": payload.Email}).Decode(&user)
+	if err == mongo.ErrNoDocuments {
+		http.Error(w, "Invalid email or password", http.StatusUnauthorized)
+		return
+	} else if err != nil {
+		http.Error(w, "Failed to fetch user", http.StatusInternalServerError)
+		return
+	}
+
+	if !verifyPassword(user.Password, payload.Password) {
+		http.Error(w, "Invalid email or password", http.StatusUnauthorized)
+		return
+	}
+
+	containerIDValue, ok := userContainers.Load(payload.Email)
+	if !ok {
+		http.Error(w, "No active container for user", http.StatusInternalServerError)
+		return
+	}
+
+	containerID := containerIDValue.(string)
+
+	ctx := context.Background()
+	if err := dockerClient.ContainerStop(ctx, containerID, container.StopOptions{}); err != nil {
+		http.Error(w, "Failed to stop the container", http.StatusInternalServerError)
+		return
+	}
+
+	if err := dockerClient.ContainerRemove(ctx, containerID, container.RemoveOptions{
+		Force: true,
+	}); err != nil {
+		http.Error(w, "Failed to remove the container", http.StatusInternalServerError)
+		return
+	}
+
+	userContainers.Delete(payload.Email)
+
+	response := map[string]string{
+		"status":  "success",
+		"message": "Logout successful, container stopped and removed",
+	}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
+}
+
 func HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode("Hello World!")
 }
 
 func main() {
+
+	// // Initialize log file
+	// logFile, err := initLogFile()
+	// if err != nil {
+	// 	fmt.Printf("Error initializing log file: %v\n", err)
+	// 	os.Exit(1)
+	// }
+	// defer logFile.Close()
+
+	// Initialize DB and Docker connections
 	InitDB()
 	InitDocker()
 
@@ -351,6 +424,7 @@ func main() {
 	r.Get("/", HelloWorldHandler)
 	r.Post("/register", RegisterHandler)
 	r.Post("/login", LoginHandler)
+	r.Post("/logout", LogoutHandler)
 	r.Post("/execute", ExecuteHandler)
 
 	http.ListenAndServe(":3333", r)
