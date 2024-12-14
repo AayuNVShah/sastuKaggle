@@ -31,7 +31,7 @@ var userContainers sync.Map
 
 func InitDB() {
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
-	opts := options.Client().ApplyURI("mongodb+srv://dhairyas4:PJgCjCjuFsD80A6H@cluster0.bcucc.mongodb.net/Compiler?retryWrites=true&w=majority&appName=Cluster0").SetServerAPIOptions(serverAPI)
+	opts := options.Client().ApplyURI("mongodb+srv://vraj:jRXl9CWhcmqja6Lm@sastukaggle.2kw7w.mongodb.net/?retryWrites=true&w=majority&appName=sastuKaggle").SetServerAPIOptions(serverAPI)
 
 	var err error
 	mongoClient, err = mongo.Connect(context.TODO(), opts)
@@ -77,9 +77,9 @@ func NewCodeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	database := mongoClient.Database("gokaggle")
-	snippetsCollection := database.Collection("compiler")
+	codesCollection := database.Collection("compiler")
 
-	insertResult, err := snippetsCollection.InsertOne(context.TODO(), payload)
+	insertResult, err := codesCollection.InsertOne(context.TODO(), payload)
 	if err != nil {
 		http.Error(w, "Failed to save snippet", http.StatusInternalServerError)
 		return
@@ -255,16 +255,16 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	payload.Password = hashPassword(payload.Password)
 
 	database := mongoClient.Database("gokaggle")
-	snippetsCollection := database.Collection("users")
+	usersCollection := database.Collection("users")
 
-	insertResult, err := snippetsCollection.InsertOne(context.TODO(), payload)
+	insertResult, err := usersCollection.InsertOne(context.TODO(), payload)
 	if err != nil {
-		http.Error(w, "Failed to save snippet", http.StatusInternalServerError)
+		http.Error(w, "Failed to save user", http.StatusInternalServerError)
 		return
 	}
 
 	w.WriteHeader(http.StatusCreated)
-	fmt.Fprintf(w, "Code saved successfully, ID: %v", insertResult.InsertedID)
+	fmt.Fprintf(w, "User saved successfully, ID: %v", insertResult.InsertedID)
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
@@ -338,6 +338,9 @@ func HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	InitDB()
+	InitDocker()
+
 	r := chi.NewRouter()
 
 	r.Use(middleware.RequestID)
