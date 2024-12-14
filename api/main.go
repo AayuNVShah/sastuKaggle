@@ -10,7 +10,9 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"sync"
+	"time"
 
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
@@ -29,18 +31,16 @@ var mongoClient *mongo.Client
 var dockerClient *client.Client
 var userContainers sync.Map
 
-// func initLogFile() (*os.File, error) {
-// 	// Create/Open log file
-// 	logFile, err := os.OpenFile("application.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
-// 	if err != nil {
-// 		return nil, fmt.Errorf("failed to open log file: %v", err)
-// 	}
+func initLogFile() (*os.File, error) {
+	logFile, err := os.OpenFile("application.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		return nil, fmt.Errorf("failed to open log file: %v", err)
+	}
 
-// 	// Set log output to the log file
-// 	log.SetOutput(logFile)
-// 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
-// 	return logFile, nil
-// }
+	log.SetOutput(logFile)
+	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
+	return logFile, nil
+}
 
 func InitDB() {
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
@@ -55,7 +55,7 @@ func InitDB() {
 	if err := mongoClient.Database("admin").RunCommand(context.TODO(), primitive.D{{Key: "ping", Value: 1}}).Err(); err != nil {
 		log.Fatalf("Failed to ping MongoDB: %v", err)
 	}
-	log.Println("Connected to MongoDB!")
+	log.Printf("Connected to MongoDB at %s", time.Now().Format(time.RFC3339))
 }
 
 func InitDocker() {
@@ -65,7 +65,7 @@ func InitDocker() {
 		log.Fatalf("Failed to create Docker client: %v", err)
 	}
 	dockerClient.NegotiateAPIVersion(context.Background())
-	log.Println("Docker client initialized!")
+	log.Printf("Docker client initialized!")
 }
 
 func CloseDB() {
@@ -86,6 +86,7 @@ func NewCodeHandler(w http.ResponseWriter, r *http.Request) {
 
 	if err := json.NewDecoder(r.Body).Decode(&payload); err != nil {
 		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		log.Printf("Invalid request payload: %v", err)
 		return
 	}
 
@@ -95,11 +96,13 @@ func NewCodeHandler(w http.ResponseWriter, r *http.Request) {
 	insertResult, err := codesCollection.InsertOne(context.TODO(), payload)
 	if err != nil {
 		http.Error(w, "Failed to save snippet", http.StatusInternalServerError)
+		log.Printf("Failed to save code snippet: %v", err)
 		return
 	}
 
 	w.WriteHeader(http.StatusCreated)
 	fmt.Fprintf(w, "Code saved successfully, ID: %v", insertResult.InsertedID)
+	log.Printf("New code snippet saved, ID: %v", insertResult.InsertedID)
 }
 
 type ExecutePayload struct {
@@ -123,7 +126,7 @@ func ExecuteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	log.Printf("Received execution request.")
+	log.Printf("Received execution request from email: %s", payload.Email)
 
 	if payload.Email == "" {
 		http.Error(w, "User email missing in request", http.StatusUnauthorized)
@@ -149,11 +152,14 @@ func ExecuteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Printf("Code executed successfully for email: %s, \ncode:\n %s \nresponse:\n %s", payload.Email, payload.Code, output)
+
 	response := map[string]string{
 		"status":  "success",
 		"message": "Execution received",
 		"output":  output,
 	}
+
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
 }
@@ -269,6 +275,8 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Printf("User registered successfully, email: %s, ID: %v", payload.Email, insertResult.InsertedID)
+
 	w.WriteHeader(http.StatusCreated)
 	fmt.Fprintf(w, "User saved successfully, ID: %v", insertResult.InsertedID)
 }
@@ -300,35 +308,44 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	ctx := context.Background()
-	image := "golang:1.20-alpine"
+	var dockID string
 
-	_, err = dockerClient.ImagePull(ctx, image, types.ImagePullOptions{})
-	if err != nil {
-		http.Error(w, "Failed to pull Docker image", http.StatusInternalServerError)
-		return
+	if cont, ok := userContainers.Load(payload.Email); !ok {
+		image := "golang:1.20-alpine"
+
+		_, err = dockerClient.ImagePull(ctx, image, types.ImagePullOptions{})
+		if err != nil {
+			http.Error(w, "Failed to pull Docker image", http.StatusInternalServerError)
+			return
+		}
+
+		resp, err := dockerClient.ContainerCreate(ctx,
+			&container.Config{
+				Image:      image,
+				WorkingDir: "/app",
+				Cmd:        []string{"sh", "-c", "while true; do sleep 1; done"},
+				Tty:        true,
+			},
+			&container.HostConfig{},
+			nil, nil, "",
+		)
+		if err != nil {
+			http.Error(w, "Failed to create container", http.StatusInternalServerError)
+			return
+		}
+
+		if err := dockerClient.ContainerStart(ctx, resp.ID, container.StartOptions{}); err != nil {
+			http.Error(w, "Failed to start container", http.StatusInternalServerError)
+			return
+		}
+
+		userContainers.Store(payload.Email, resp.ID)
+		dockID = resp.ID
+	} else {
+		dockID = cont.(string)
 	}
 
-	resp, err := dockerClient.ContainerCreate(ctx,
-		&container.Config{
-			Image:      image,
-			WorkingDir: "/app",
-			Cmd:        []string{"sh", "-c", "while true; do sleep 1; done"},
-			Tty:        true,
-		},
-		&container.HostConfig{},
-		nil, nil, "",
-	)
-	if err != nil {
-		http.Error(w, "Failed to create container", http.StatusInternalServerError)
-		return
-	}
-
-	if err := dockerClient.ContainerStart(ctx, resp.ID, container.StartOptions{}); err != nil {
-		http.Error(w, "Failed to start container", http.StatusInternalServerError)
-		return
-	}
-
-	userContainers.Store(payload.Email, resp.ID)
+	log.Printf("User logged in successfully, email: %s, container ID: %s", payload.Email, dockID)
 
 	response := map[string]string{
 		"status":  "success",
@@ -387,6 +404,8 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 
 	userContainers.Delete(payload.Email)
 
+	log.Printf("User logged out successfully, email: %s, container ID removed", payload.Email)
+
 	response := map[string]string{
 		"status":  "success",
 		"message": "Logout successful, container stopped and removed",
@@ -402,15 +421,15 @@ func HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	// // Initialize log file
-	// logFile, err := initLogFile()
-	// if err != nil {
-	// 	fmt.Printf("Error initializing log file: %v\n", err)
-	// 	os.Exit(1)
-	// }
-	// defer logFile.Close()
+	logFile, err := initLogFile()
+	if err != nil {
+		fmt.Printf("Error initializing log file: %v\n", err)
+		os.Exit(1)
+	}
+	defer logFile.Close()
 
-	// Initialize DB and Docker connections
+	log.Printf("Booting up the server")
+
 	InitDB()
 	InitDocker()
 
@@ -428,5 +447,5 @@ func main() {
 	r.Post("/execute", ExecuteHandler)
 
 	http.ListenAndServe(":3333", r)
-	fmt.Println("Server is running on port 3333")
+	fmt.Printf("Server is running on port 3333")
 }
