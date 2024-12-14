@@ -26,10 +26,14 @@ import (
 	"golang.org/x/crypto/sha3"
 )
 
-// -------------------------------- DB Connections and Functions --------------------------------
-var mongoClient *mongo.Client
+const inactivityTimeout = 10 * time.Minute
+
 var dockerClient *client.Client
 var userContainers sync.Map
+var dockerTimeouts sync.Map
+
+// -------------------------------- DB Connections and Functions --------------------------------
+var mongoClient *mongo.Client
 
 func initLogFile() (*os.File, error) {
 	logFile, err := os.OpenFile("application.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
@@ -77,6 +81,7 @@ func CloseDB() {
 // -------------------------------- Core API Payloads & Handlers --------------------------------
 
 type NewCodePayload struct {
+	Email    string `json:"email"`
 	FileName string `json:"file_name"`
 	Code     string `json:"code"`
 }
@@ -91,7 +96,7 @@ func NewCodeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	database := mongoClient.Database("gokaggle")
-	codesCollection := database.Collection("compiler")
+	codesCollection := database.Collection("codes")
 
 	insertResult, err := codesCollection.InsertOne(context.TODO(), payload)
 	if err != nil {
@@ -153,6 +158,8 @@ func ExecuteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.Printf("Code executed successfully for email: %s, \ncode:\n %s \nresponse:\n %s", payload.Email, payload.Code, output)
+
+	updateContainerActivity(payload.Email)
 
 	response := map[string]string{
 		"status":  "success",
@@ -237,6 +244,56 @@ func copyCodeToContainer(cli *client.Client, ctx context.Context, containerID, c
 	}
 
 	return cli.CopyToContainer(ctx, containerID, "/app", &buf, types.CopyToContainerOptions{})
+}
+
+func updateContainerActivity(email string) {
+	dockerTimeouts.Store(email, time.Now())
+	log.Printf("Container activity updated for user: %s", email)
+}
+
+func checkInactiveContainers() {
+	for {
+		time.Sleep(5 * time.Minute)
+
+		now := time.Now()
+		dockerTimeouts.Range(func(key, value interface{}) bool {
+			email := key.(string)
+			lastActiveTime := value.(time.Time)
+
+			if now.Sub(lastActiveTime) > inactivityTimeout {
+				log.Printf("Container for user %s has been inactive for more than 10 minutes. Stopping and removing...", email)
+				stopAndRemoveContainer(email)
+			}
+			return true
+		})
+	}
+}
+
+func stopAndRemoveContainer(email string) {
+	containerIDValue, ok := userContainers.Load(email)
+	if !ok {
+		log.Printf("No container found for user %s", email)
+		return
+	}
+
+	containerID := containerIDValue.(string)
+	ctx := context.Background()
+
+	if err := dockerClient.ContainerStop(ctx, containerID, container.StopOptions{}); err != nil {
+		log.Printf("Failed to stop container %s: %v", containerID, err)
+		return
+	}
+
+	if err := dockerClient.ContainerRemove(ctx, containerID, container.RemoveOptions{
+		Force: true,
+	}); err != nil {
+		log.Printf("Failed to remove container %s: %v", containerID, err)
+		return
+	}
+
+	userContainers.Delete(email)
+	dockerTimeouts.Delete(email)
+	log.Printf("Container for user %s stopped and removed", email)
 }
 
 // -------------------------------- Authentication API Payloads & Handlers --------------------------------
@@ -345,6 +402,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		dockID = cont.(string)
 	}
 
+	updateContainerActivity(payload.Email)
+
 	log.Printf("User logged in successfully, email: %s, container ID: %s", payload.Email, dockID)
 
 	response := map[string]string{
@@ -381,28 +440,7 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	containerIDValue, ok := userContainers.Load(payload.Email)
-	if !ok {
-		http.Error(w, "No active container for user", http.StatusInternalServerError)
-		return
-	}
-
-	containerID := containerIDValue.(string)
-
-	ctx := context.Background()
-	if err := dockerClient.ContainerStop(ctx, containerID, container.StopOptions{}); err != nil {
-		http.Error(w, "Failed to stop the container", http.StatusInternalServerError)
-		return
-	}
-
-	if err := dockerClient.ContainerRemove(ctx, containerID, container.RemoveOptions{
-		Force: true,
-	}); err != nil {
-		http.Error(w, "Failed to remove the container", http.StatusInternalServerError)
-		return
-	}
-
-	userContainers.Delete(payload.Email)
+	stopAndRemoveContainer(payload.Email)
 
 	log.Printf("User logged out successfully, email: %s, container ID removed", payload.Email)
 
@@ -433,6 +471,8 @@ func main() {
 	InitDB()
 	InitDocker()
 
+	go checkInactiveContainers()
+
 	r := chi.NewRouter()
 
 	r.Use(middleware.RequestID)
@@ -444,6 +484,8 @@ func main() {
 	r.Post("/register", RegisterHandler)
 	r.Post("/login", LoginHandler)
 	r.Post("/logout", LogoutHandler)
+
+	r.Post("/new", NewCodeHandler)
 	r.Post("/execute", ExecuteHandler)
 
 	http.ListenAndServe(":3333", r)
