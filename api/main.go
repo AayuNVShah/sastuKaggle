@@ -26,14 +26,16 @@ import (
 	"golang.org/x/crypto/sha3"
 )
 
+// -------------------------------- Declarations --------------------------------
+
 const inactivityTimeout = 10 * time.Minute
 
+var mongoClient *mongo.Client
 var dockerClient *client.Client
 var userContainers sync.Map
 var dockerTimeouts sync.Map
 
-// -------------------------------- DB Connections and Functions --------------------------------
-var mongoClient *mongo.Client
+// -------------------------------- Connections and Functions --------------------------------
 
 func initLogFile() (*os.File, error) {
 	logFile, err := os.OpenFile("application.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
@@ -82,7 +84,7 @@ func CloseDB() {
 
 type NewCodePayload struct {
 	Email    string `json:"email"`
-	FileName string `json:"file_name"`
+	FileName string `json:"filename"`
 	Code     string `json:"code"`
 }
 
@@ -97,6 +99,13 @@ func NewCodeHandler(w http.ResponseWriter, r *http.Request) {
 
 	database := mongoClient.Database("gokaggle")
 	codesCollection := database.Collection("codes")
+
+	var existingCode NewCodePayload
+	err := codesCollection.FindOne(context.TODO(), bson.M{"email": payload.Email, "filename": payload.FileName}).Decode(&existingCode)
+	if err != mongo.ErrNoDocuments {
+		http.Error(w, "File with the same name already exists for this user", http.StatusConflict)
+		return
+	}
 
 	insertResult, err := codesCollection.InsertOne(context.TODO(), payload)
 	if err != nil {
@@ -162,13 +171,234 @@ func ExecuteHandler(w http.ResponseWriter, r *http.Request) {
 	updateContainerActivity(payload.Email)
 
 	response := map[string]string{
-		"status":  "success",
-		"message": "Execution received",
-		"output":  output,
+		"output": output,
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
+}
+
+type RunPayload struct {
+	Email    string `json:"email"`
+	FileName string `json:"filename"`
+}
+
+func RunCodeHandler(w http.ResponseWriter, r *http.Request) {
+	var payload RunPayload
+
+	if err := json.NewDecoder(r.Body).Decode(&payload); err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		log.Printf("Invalid request payload: %v", err)
+		return
+	}
+
+	log.Printf("Received run request from email: %s, filename: %s", payload.Email, payload.FileName)
+
+	database := mongoClient.Database("gokaggle")
+	codesCollection := database.Collection("codes")
+
+	var code NewCodePayload
+	err := codesCollection.FindOne(context.TODO(), bson.M{"email": payload.Email, "filename": payload.FileName}).Decode(&code)
+	if err == mongo.ErrNoDocuments {
+		http.Error(w, "Code file not found for the given email and file name", http.StatusNotFound)
+		return
+	} else if err != nil {
+		http.Error(w, "Failed to fetch code file", http.StatusInternalServerError)
+		log.Printf("Error fetching code file: %v", err)
+		return
+	}
+
+	containerIDValue, ok := userContainers.Load(payload.Email)
+	if !ok {
+		http.Error(w, "No container initialized for the user", http.StatusInternalServerError)
+		return
+	}
+	containerID := containerIDValue.(string)
+
+	if err := copyCodeToContainer(dockerClient, context.Background(), containerID, code.Code, payload.FileName); err != nil {
+		http.Error(w, "Failed to copy code to container", http.StatusInternalServerError)
+		return
+	}
+
+	output, err := runCodeInExistingContainer(containerID)
+	if err != nil {
+		http.Error(w, "Failed to execute code", http.StatusInternalServerError)
+		return
+	}
+
+	log.Printf("Code executed successfully for email: %s, filename: %s, output: %s", payload.Email, payload.FileName, output)
+
+	response := map[string]string{
+		"output": output,
+	}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
+}
+
+type GetCodePayload struct {
+	Email    string `json:"email"`
+	FileName string `json:"filename"`
+}
+
+func GetCodeHandler(w http.ResponseWriter, r *http.Request) {
+	var payload GetCodePayload
+
+	if err := json.NewDecoder(r.Body).Decode(&payload); err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		return
+	}
+
+	database := mongoClient.Database("gokaggle")
+	codesCollection := database.Collection("codes")
+
+	var result NewCodePayload
+	err := codesCollection.FindOne(context.TODO(), bson.M{"email": payload.Email, "filename": payload.FileName}).Decode(&result)
+	if err == mongo.ErrNoDocuments {
+		http.Error(w, "No code found for the given email and file name", http.StatusNotFound)
+		return
+	} else if err != nil {
+		http.Error(w, "Failed to fetch code", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(result)
+}
+
+type GetFilesPayload struct {
+	Email string `json:"email"`
+}
+
+func GetFilesHandler(w http.ResponseWriter, r *http.Request) {
+	var payload GetFilesPayload
+
+	if err := json.NewDecoder(r.Body).Decode(&payload); err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		return
+	}
+
+	database := mongoClient.Database("gokaggle")
+	codesCollection := database.Collection("codes")
+
+	cursor, err := codesCollection.Find(context.TODO(), bson.M{"email": payload.Email})
+	if err != nil {
+		http.Error(w, "Failed to fetch files", http.StatusInternalServerError)
+		return
+	}
+
+	defer cursor.Close(context.TODO())
+
+	var files []string
+	for cursor.Next(context.TODO()) {
+		var result NewCodePayload
+		if err := cursor.Decode(&result); err != nil {
+			http.Error(w, "Error decoding file data", http.StatusInternalServerError)
+			return
+		}
+		files = append(files, result.FileName)
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(files)
+}
+
+type UpdateCodePayload struct {
+	Email    string `json:"email"`
+	FileName string `json:"filename"`
+	Password string `json:"password"`
+	NewCode  string `json:"new_code"`
+}
+
+func UpdateCodeHandler(w http.ResponseWriter, r *http.Request) {
+	var payload UpdateCodePayload
+
+	if err := json.NewDecoder(r.Body).Decode(&payload); err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		return
+	}
+
+	database := mongoClient.Database("gokaggle")
+	usersCollection := database.Collection("users")
+
+	var user UserPayload
+	err := usersCollection.FindOne(context.TODO(), bson.M{"email": payload.Email}).Decode(&user)
+	if err == mongo.ErrNoDocuments {
+		http.Error(w, "Invalid email or password", http.StatusUnauthorized)
+		return
+	} else if err != nil {
+		http.Error(w, "Failed to fetch user", http.StatusInternalServerError)
+		return
+	}
+
+	if !verifyPassword(user.Password, payload.Password) {
+		http.Error(w, "Invalid email or password", http.StatusUnauthorized)
+		return
+	}
+
+	codesCollection := database.Collection("codes")
+	filter := bson.M{"email": payload.Email, "filename": payload.FileName}
+	update := bson.M{"$set": bson.M{"code": payload.NewCode}}
+	result, err := codesCollection.UpdateOne(context.TODO(), filter, update)
+	if err != nil {
+		http.Error(w, "Failed to update code", http.StatusInternalServerError)
+		return
+	}
+	if result.MatchedCount == 0 {
+		http.Error(w, "No code found for the given email and file name", http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]string{"status": "success", "message": "Code updated successfully"})
+}
+
+type DeleteCodePayload struct {
+	Email    string `json:"email"`
+	FileName string `json:"filename"`
+	Password string `json:"password"`
+}
+
+func DeleteCodeHandler(w http.ResponseWriter, r *http.Request) {
+	var payload DeleteCodePayload
+
+	if err := json.NewDecoder(r.Body).Decode(&payload); err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		return
+	}
+
+	database := mongoClient.Database("gokaggle")
+	usersCollection := database.Collection("users")
+
+	var user UserPayload
+	err := usersCollection.FindOne(context.TODO(), bson.M{"email": payload.Email}).Decode(&user)
+	if err == mongo.ErrNoDocuments {
+		http.Error(w, "Invalid email or password", http.StatusUnauthorized)
+		return
+	} else if err != nil {
+		http.Error(w, "Failed to fetch user", http.StatusInternalServerError)
+		return
+	}
+
+	if !verifyPassword(user.Password, payload.Password) {
+		http.Error(w, "Invalid email or password", http.StatusUnauthorized)
+		return
+	}
+
+	codesCollection := database.Collection("codes")
+	filter := bson.M{"email": payload.Email, "filename": payload.FileName}
+
+	result, err := codesCollection.DeleteOne(context.TODO(), filter)
+	if err != nil {
+		http.Error(w, "Failed to delete code", http.StatusInternalServerError)
+		return
+	}
+	if result.DeletedCount == 0 {
+		http.Error(w, "No code found for the given email and file name", http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]string{"status": "success", "message": "Code deleted successfully"})
 }
 
 func runCodeInExistingContainer(containerID string) (string, error) {
@@ -321,10 +551,17 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	payload.Password = hashPassword(payload.Password)
-
 	database := mongoClient.Database("gokaggle")
 	usersCollection := database.Collection("users")
+
+	var existingUser UserPayload
+	err := usersCollection.FindOne(context.TODO(), bson.M{"email": payload.Email}).Decode(&existingUser)
+	if err != mongo.ErrNoDocuments {
+		http.Error(w, "Email is already registered", http.StatusConflict)
+		return
+	}
+
+	payload.Password = hashPassword(payload.Password)
 
 	insertResult, err := usersCollection.InsertOne(context.TODO(), payload)
 	if err != nil {
@@ -485,8 +722,12 @@ func main() {
 	r.Post("/login", LoginHandler)
 	r.Post("/logout", LogoutHandler)
 
+	r.Get("/get-code", GetCodeHandler)
+	r.Get("/get-files", GetFilesHandler)
 	r.Post("/new", NewCodeHandler)
 	r.Post("/execute", ExecuteHandler)
+	r.Put("/update-code", UpdateCodeHandler)
+	r.Delete("/delete-code", DeleteCodeHandler)
 
 	http.ListenAndServe(":3333", r)
 	fmt.Printf("Server is running on port 3333")
