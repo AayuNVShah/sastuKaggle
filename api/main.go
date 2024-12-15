@@ -149,7 +149,7 @@ func ExecuteHandler(w http.ResponseWriter, r *http.Request) {
 
 	containerIDValue, ok := userContainers.Load(payload.Email)
 	if !ok {
-		http.Error(w, "No container initialized for user", http.StatusInternalServerError)
+		http.Error(w, "No container initialized for user, try logging in first", http.StatusInternalServerError)
 		return
 	}
 
@@ -210,7 +210,7 @@ func RunCodeHandler(w http.ResponseWriter, r *http.Request) {
 
 	containerIDValue, ok := userContainers.Load(payload.Email)
 	if !ok {
-		http.Error(w, "No container initialized for the user", http.StatusInternalServerError)
+		http.Error(w, "No container initialized for the user, try logging in first", http.StatusInternalServerError)
 		return
 	}
 	containerID := containerIDValue.(string)
@@ -502,7 +502,7 @@ func checkInactiveContainers() {
 func stopAndRemoveContainer(email string) {
 	containerIDValue, ok := userContainers.Load(email)
 	if !ok {
-		log.Printf("No container found for user %s", email)
+		log.Printf("No container found for user %s, try logging in first", email)
 		return
 	}
 
@@ -726,6 +726,7 @@ func main() {
 	r.Get("/get-files", GetFilesHandler)
 	r.Post("/new", NewCodeHandler)
 	r.Post("/execute", ExecuteHandler)
+	r.Post("/run", RunCodeHandler)
 	r.Put("/update-code", UpdateCodeHandler)
 	r.Delete("/delete-code", DeleteCodeHandler)
 
