@@ -215,7 +215,7 @@ func RunCodeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	containerID := containerIDValue.(string)
 
-	if err := copyCodeToContainer(dockerClient, context.Background(), containerID, code.Code, payload.FileName); err != nil {
+	if err := copyCodeToContainer(dockerClient, context.Background(), containerID, code.Code, "main.go"); err != nil {
 		http.Error(w, "Failed to copy code to container", http.StatusInternalServerError)
 		return
 	}
