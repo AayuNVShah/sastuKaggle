@@ -16,7 +16,7 @@ pub struct UserPayload {
     pub password: String,
 }
 
-#[post("/register")]
+#[post("/simple/register")]
 pub async fn register_handler(
     db: web::Data<Client>,
     payload: web::Json<UserPayload>,

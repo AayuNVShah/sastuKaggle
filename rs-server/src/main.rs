@@ -7,7 +7,9 @@ mod user;
 use crate::{
     db::init_db,
     execute::execute_handler,
-    new::new_handler,
+    new::{
+        delete_code_handler, get_code_handler, get_files_handler, new_handler, update_code_handler,
+    },
     run::run_handler,
     user::{login_handler, logout_handler, register_handler},
 };
@@ -47,6 +49,10 @@ async fn main() -> Result<()> {
             .service(logout_handler)
             .service(execute_handler)
             .service(new_handler)
+            .service(update_code_handler)
+            .service(delete_code_handler)
+            .service(get_code_handler)
+            .service(get_files_handler)
             .service(run_handler)
     })
     .bind(("127.0.0.1", 8080))?
