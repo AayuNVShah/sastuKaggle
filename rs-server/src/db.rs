@@ -6,7 +6,7 @@ use mongodb::{
 };
 use tracing::info;
 
-const URI: &str = "mongodb+srv://khwahish:khwahish29@sastukaggle.2kw7w.mongodb.net/?retryWrites=true&w=majority&appName=sastuKaggle";
+const URI: &str = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.6";
 
 pub async fn init_db() -> Result<Client> {
     let mut client_options = ClientOptions::parse(URI).await?;
